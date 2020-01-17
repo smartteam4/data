@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.mapper.UserMapper">
+	<resultMap id="userMap" type="user">
+		<id column="u_id" property="UId"/>
+		<result column="u_username" property="UUsername"/>
+		<result column="u_password" property="UPassword"/>
+		<result column="u_name" property="UName"/>
+		<result column="u_sex" property="USex"/>
+		<result column="u_class" property="UClass"/>
+		<result column="u_email" property="UEmail"/>
+		<result column="u_type" property="UType"/>
+		<result column="u_phone" property="UPhone"/>
+		<result column="u_status" property="UStatus"/>
+	</resultMap>
+	<select id="findAll" resultMap="userMap">
+		SELECT * FROM user;
+	</select>
+	<select id="checkUsername" resultType="int">
+		SELECT COUNT(*) FROM user WHERE
+		u_username = #{username}
+	</select>
+	<select id="checkType" resultType="int">
+		SELECT u_type FROM user WHERE
+		u_username = #{username}
+	</select>
+	<select id="login" resultType="int">
+		SELECT COUNT(*) FROM user WHERE
+		u_username = #{UUsername} AND u_password = #{UPassword}
+	</select>
+	<select id="status" resultType="int">
+		SELECT u_status FROM user WHERE
+		u_username = #{UUsername}
+	</select>
+	<insert id="save">
+		INSERT INTO
+			user (u_username, u_password, u_name, u_sex, u_class, u_email, u_type, u_phone, u_status)
+		VALUES (#{UUsername},#{UPassword},#{UName},#{USex},#{UClass},#{UEmail},#{UType},#{UPhone},#{UStatus})
+	</insert>
+	<select id="findUser" resultMap="userMap">
+		SELECT * FROM user WHERE
+		u_username = #{username};
+	</select>
+	<update id="generalUpdate">
+		UPDATE user SET u_name = #{UName}, u_sex = #{USex},u_class = #{UClass},
+		 u_email = #{UEmail},u_phone = #{UPhone} WHERE u_id = #{UId}
+	</update>
+	<select id="selectByPage" resultMap="userMap">
+		select * from user limit #{startPos},#{pageSize}
+	</select>
+	<select id="getUserCount" resultType="int">
+		SELECT COUNT(*) FROM user;
+	</select>
+	<update id="updatePassword">
+		UPDATE user SET u_password = #{UPassword} WHERE u_id = #{UId}
+	</update>
+	<delete id="deleteUser">
+		DELETE FROM user WHERE u_id = #{UId}
+	</delete>
+	<select id="findByUId" resultMap="userMap">
+		SELECT * FROM user WHERE u_id = #{UId}
+	</select>
+	<update id="manageUpdate">
+		UPDATE user SET u_password = #{UPassword}, u_name = #{UName},u_sex = #{USex},
+		u_class = #{UClass}, u_email = #{UEmail},u_type = #{UType},u_phone = #{UPhone},
+		u_status = #{UStatus} WHERE u_id = #{UId}
+	</update>
+	<select id="findByFuzzy" resultMap="userMap">
+		SELECT * FROM user WHERE ${key} like concat('%',#{value},'%')
+	</select>
+</mapper>

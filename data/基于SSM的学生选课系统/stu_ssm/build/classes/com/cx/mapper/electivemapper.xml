@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.mapper.ElectiveMapper">
+
+    <resultMap id="electiveMap" type="elective">
+        <id column="e_id" property="EId"/>
+        <result column="u_id" property="UId"/>
+        <result column="c_id" property="CId"/>
+        <!--模型里面有模型,使用association来配置-->
+
+        <association property="course" javaType="course">
+            <id column="c_id" property="CId"/>
+            <id column="c_num" property="CNum"/>
+            <id column="c_name" property="CName"/>
+            <id column="c_type" property="CType"/>
+            <id column="c_score" property="CScore"/>
+            <id column="c_teacher" property="CTeacher"/>
+        </association>
+        <association property="user" foreignColumn="u_id" javaType="user">
+            <id column="u_id" property="UId"/>
+            <result column="u_username" property="UUsername"/>
+            <result column="u_password" property="UPassword"/>
+            <result column="u_name" property="UName"/>
+            <result column="u_sex" property="USex"/>
+            <result column="u_class" property="UClass"/>
+            <result column="u_email" property="UEmail"/>
+            <result column="u_type" property="UType"/>
+            <result column="u_phone" property="UPhone"/>
+            <result column="u_status" property="UStatus"/>
+        </association>
+    </resultMap>
+
+    <select id="findByUId" resultMap="electiveMap">
+        SELECT * FROM elective WHERE u_id = #{UId}
+    </select>
+
+    <insert id="save">
+        INSERT INTO elective(u_id, c_id) VALUES(#{UId}, #{CId})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM elective WHERE e_id = #{EId}
+    </delete>
+    <select id="getElectiveCount" resultType="int">
+        SELECT COUNT(*) FROM elective;
+    </select>
+    <select id="selectElectiveByPage" resultMap="electiveMap">
+        SELECT e.e_id, c.c_num, c.c_name, c.c_type, c.c_score,
+        c.c_teacher,u.u_username, u.u_name, u.u_class
+        FROM user u
+        RIGHT JOIN  elective e
+        ON e.u_id = u.u_id
+        LEFT JOIN course c ON
+        e.c_id = c.c_id
+        LIMIT #{startPos},#{pageSize}
+    </select>
+    <delete id="deleteByUId">
+  		DELETE FROM elective WHERE u_id = #{UId};
+    </delete>
+    <select id="findByFuzzy" resultMap="electiveMap">
+        SELECT e.e_id, c.c_num, c.c_name, c.c_type, c.c_score,
+        c.c_teacher,u.u_username, u.u_name, u.u_class
+        FROM user u
+        RIGHT JOIN  elective e
+        ON e.u_id = u.u_id
+        LEFT JOIN course c ON
+        e.c_id = c.c_id
+        WHERE ${key} like concat('%',#{value},'%')
+    </select>
+</mapper>

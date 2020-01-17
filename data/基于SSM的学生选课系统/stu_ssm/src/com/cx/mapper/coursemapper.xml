@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.mapper.CourseMapper">
+
+    <resultMap id="courseMap" type="course">
+        <id column="c_id" property="CId"/>
+        <result column="c_num" property="CNum"/>
+        <result column="c_name" property="CName"/>
+        <result column="c_type" property="CType"/>
+        <result column="c_score" property="CScore"/>
+        <result column="c_teacher" property="CTeacher"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="courseMap">
+        SELECT * FROM course;
+    </select>
+    <select id="findByCId" resultMap="courseMap">
+        SELECT * FROM course WHERE c_id = #{CId};
+    </select>
+    <select id="selectByPage" resultMap="courseMap">
+        select * from course LIMIT #{startPos},#{pageSize}
+    </select>
+    <select id="getCourseCount" resultType="int">
+        SELECT COUNT(*) FROM course;
+    </select>
+    <delete id="deleteCourse">
+        DELETE FROM course WHERE c_id = #{CId}
+    </delete>
+    <update id="manageUpdate">
+        UPDATE course SET c_name = #{CName}, c_type = #{CType},
+        c_score = #{CScore}, c_teacher = #{CTeacher} WHERE c_id = #{CId}
+    </update>
+    <select id="findByFuzzy" resultMap="courseMap">
+        SELECT * FROM course WHERE ${key} like concat('%',#{value},'%')
+    </select>
+    <insert id="save">
+        INSERT INTO course(c_num, c_name, c_type, c_score, c_teacher)
+        VALUE(#{CNum}, #{CName}, #{CType}, #{CScore}, #{CTeacher})
+    </insert>
+    <select id="checkCNum" resultType="int">
+        SELECT COUNT(*) FROM course WHERE c_num = #{CNum}
+    </select>
+</mapper>

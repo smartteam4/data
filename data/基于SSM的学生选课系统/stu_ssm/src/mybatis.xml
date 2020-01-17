@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+	<settings>
+		<!-- 配置数据库访问延迟操作 -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	
+	<!-- 配置访问包的别名 -->
+	<typeAliases>
+		<!-- 映射文件查询是输入输出的别名配置处 -->
+ 		<package name="com.cx.pojo"/>
+ 	</typeAliases>
+ 	<!--关联映射文件  -->
+	<mappers>
+		<!--<mapper resource="com/cx/mapper/usermapper.xml"/>-->
+         <package name="com.cx.mapper"></package>
+	</mappers>
+ </configuration>

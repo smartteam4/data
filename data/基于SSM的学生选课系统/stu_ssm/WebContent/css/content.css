@@ -1,0 +1,79 @@
+#form{
+    max-width: 700px;
+    margin: 30px auto;
+}
+#form .msg{
+    display: block;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+#form .btn{
+     width: 100px;
+}
+.navbar{
+    position: relative;
+}
+#bar_title{
+    padding-top: 11px;
+}
+#logout{
+    margin: 13px;
+    color: rgba(255,255,255,.5);
+}
+#logout a{
+    text-decoration: none;
+    color: rgba(255,255,255,.5);
+}
+#bo .Features{
+    margin: 30vh 2% 0 2%;
+}
+#bo .Features.row{
+    flex: 29.33%;
+    max-width: 29.33%;
+}
+#bo .Features.col-6{
+    margin: 15vh 2% 0 2%;
+}
+#bo .Features.col-6.row{
+    flex: 46%;
+    max-width: 46%;
+}
+#bo a.Features {
+    border: 1px solid #5bc0de;
+    border-bottom: 5px solid #5bc0de;
+    padding: 1.5em;
+    text-decoration: none;
+    color: #000;
+}
+#bo a.Features .col-3{
+    font-size: 2em;
+}
+#bo a.Features h5{
+    letter-spacing: 1em;
+}
+#bo a.Features p{
+    width: 100%;
+    text-align: left;
+}
+#bo a.Features:hover{
+    color: #fff;
+    background: #5bc0de;
+}
+#bulletin{
+    margin: 50px;
+}
+#bulletin a{
+    color: #000;
+    text-decoration: none;
+}
+#bulletin p{
+    position: relative;
+    border-bottom: 1px dashed #666;
+}
+#bulletin .b_time{
+    position: absolute;
+    right: 0;
+}
+#b_c_content p{
+    text-indent: 2em;
+}

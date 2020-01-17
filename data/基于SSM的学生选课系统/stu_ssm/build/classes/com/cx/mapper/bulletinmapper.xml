@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.mapper.BulletinMapper">
+	<resultMap id="bulletinMap" type="bulletin">
+		<id column="b_id" property="BId"/>
+		<result column="b_title" property="BTitle"/>
+		<result column="b_date" property="BDate"/>
+		<result column="b_content" property="BContent"/>
+		<result column="b_drop" property="BDrop"/>
+	</resultMap>
+	<select id="findAll" resultMap="bulletinMap">
+		SELECT * FROM bulletin;
+	</select>
+	<select id="selectByPage" resultMap="bulletinMap">
+		select * from bulletin limit #{startPos},#{pageSize}
+	</select>
+	<select id="getBulletinCount" resultType="int">
+		SELECT COUNT(*) FROM bulletin;
+	</select>
+	<select id="findByBId" resultMap="bulletinMap">
+		SELECT * FROM bulletin WHERE b_id = #{BId};
+	</select>
+
+	<select id="findByFuzzy" resultMap="bulletinMap">
+		SELECT * FROM bulletin WHERE ${key} like concat('%',#{value},'%')
+	</select>
+	<delete id="delete">
+		DELETE FROM bulletin WHERE b_id = #{BId}
+	</delete>
+	<update id="update">
+		UPDATE bulletin SET b_title = #{BTitle}, b_date = #{BDate},
+		 b_content = #{BContent}, b_drop = #{BDrop} WHERE b_id = #{BId}
+	</update>
+	<insert id="save">
+		INSERT INTO bulletin (b_title, b_date, b_content, b_drop)
+		VALUE(#{BTitle}, #{BDate}, #{BContent}, #{BDrop})
+	</insert>
+</mapper>
