@@ -113,9 +113,9 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '20xxxxx487', '123456', '崔信', '1', '软件1710', '1287805570@qq.com', '0', '188799xxxxx', '1');
-INSERT INTO `user` VALUES ('3', '20xxxxx315', '123456', '陈俊杰', '1', '软件1710班', '2512808383@qq.com', '1', '138799xxxxx', '1');
-INSERT INTO `user` VALUES ('4', '20xxxxx714', '123456', 'lyb', '1', 'rj1710', '1175xxxxx@qq.com', '0', '15870075802', '0');
-INSERT INTO `user` VALUES ('6', '20xxxxx051', '123456', '张航', '1', '软件1710班', '1741179105@qq.com', '1', '187204xxxxx', '1');
+INSERT INTO `user` VALUES ('3', '20xxxxx315', '123456', '陈俊杰', '1', '软件1710班', '25xxxxxx@qq.com', '1', '138799xxxxx', '1');
+INSERT INTO `user` VALUES ('4', '20xxxxx714', '123456', 'lyb', '1', 'rj1710', '1175xxxxx@qq.com', '0', '158700xxxxx', '0');
+INSERT INTO `user` VALUES ('6', '20xxxxx051', '123456', '张航', '1', '软件1710班', '174xxxxx@qq.com', '1', '187204xxxxx', '1');
 INSERT INTO `user` VALUES ('9', '20xxxxx000', '123456', 'test', '1', '软件1709', '123456@qq.com', '1', '188796xxxxx', '1');
 INSERT INTO `user` VALUES ('10', '20xxxxx001', '123456', '测试', '1', '软件1710', '123456@qq.com', '1', '138799xxxxx', '1');
 INSERT INTO `user` VALUES ('11', '20xxxxx333', '123456', 'test', '1', '软件1710', '111@qq.com', '1', '138794xxxxx', '1');
